@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 
 	def new
 		@message = Message.new
-		@company = Company.find(params[:id])
+		@company = Company.find(params[:company_id])
 	end
 
 	def create
@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
 
 	def save(message)
 		if message.save
-			redirect_to message.company
+			redirect_to company_path(params[:company_id])
 		else
 			render :new
 		end
